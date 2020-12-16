@@ -2,9 +2,22 @@
   "name": "consumer",
   "version": "0.0.0",
   "private": true,
+  "watch": {
+    "start": {
+      "patterns": [
+        "*.js",
+        "*.pug"
+      ]
+    },
+    "test": "test/*"
+  },
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "mocha --recursive"
+    "start": "API_HOST=http://localhost:57271 node ./bin/www",
+    "test": "mocha --recursive",
+    "watch": "npm-watch",
+    "mock-server": "~/.cargo/bin/pact_mock_server_cli start",
+    "mock-service": "~/.cargo/bin/pact_mock_server_cli create -f ./pacts/consumer-provider.json",
+    "mock-apis-start": "npm run mock-server & npm run mock-service"
   },
   "dependencies": {
     "@pact-foundation/pact": "^9.13.0",
@@ -20,6 +33,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^8.2.1",
+    "npm-watch": "^0.7.0",
     "pact": "^4.3.2"
   }
 }

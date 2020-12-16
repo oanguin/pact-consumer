@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  for user in data
+    h1
+      a(href=`/user/${user.email}`)
+        ul #{user.firstName}, #{user.lastName} 

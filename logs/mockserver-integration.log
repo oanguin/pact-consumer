@@ -1,5 +1,5 @@
-I, [2020-12-14T15:23:01.199991 #70732]  INFO -- : Registered expected interaction GET /users
-D, [2020-12-14T15:23:01.200222 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.296854 #97447]  INFO -- : Registered expected interaction GET /users
+D, [2020-12-15T15:28:39.297597 #97447] DEBUG -- : {
   "description": "a request to get users",
   "providerState": "Has some users",
   "request": {
@@ -14,26 +14,32 @@ D, [2020-12-14T15:23:01.200222 #70732] DEBUG -- : {
     "body": [
       {
         "firstName": "Oneal",
-        "lastName": "Anguin"
+        "lastName": "Anguin",
+        "email": "oanguin@bots.com"
+      },
+      {
+        "firstName": "Not-Found",
+        "lastName": "Not-Found",
+        "email": "notfound@notfound.notfound@notfound"
       }
     ]
   },
   "metadata": null
 }
-I, [2020-12-14T15:23:01.212528 #70732]  INFO -- : Received request GET /users
-D, [2020-12-14T15:23:01.212650 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.309057 #97447]  INFO -- : Received request GET /users
+D, [2020-12-15T15:28:39.309152 #97447] DEBUG -- : {
   "path": "/users",
   "query": "",
   "method": "get",
   "headers": {
-    "Host": "localhost:62715",
+    "Host": "localhost:57485",
     "Accept-Encoding": "gzip, deflate",
     "Connection": "close",
     "Version": "HTTP/1.1"
   }
 }
-I, [2020-12-14T15:23:01.212963 #70732]  INFO -- : Found matching response for GET /users
-D, [2020-12-14T15:23:01.213078 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.309435 #97447]  INFO -- : Found matching response for GET /users
+D, [2020-12-15T15:28:39.309516 #97447] DEBUG -- : {
   "status": 200,
   "headers": {
     "Content-Type": "application/json; charset=utf-8"
@@ -41,14 +47,20 @@ D, [2020-12-14T15:23:01.213078 #70732] DEBUG -- : {
   "body": [
     {
       "firstName": "Oneal",
-      "lastName": "Anguin"
+      "lastName": "Anguin",
+      "email": "oanguin@bots.com"
+    },
+    {
+      "firstName": "Not-Found",
+      "lastName": "Not-Found",
+      "email": "notfound@notfound.notfound@notfound"
     }
   ]
 }
-I, [2020-12-14T15:23:01.220423 #70732]  INFO -- : Verifying - interactions matched
-I, [2020-12-14T15:23:01.225550 #70732]  INFO -- : Cleared interactions
-I, [2020-12-14T15:23:01.230711 #70732]  INFO -- : Registered expected interaction GET /users
-D, [2020-12-14T15:23:01.230812 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.316186 #97447]  INFO -- : Verifying - interactions matched
+I, [2020-12-15T15:28:39.321469 #97447]  INFO -- : Cleared interactions
+I, [2020-12-15T15:28:39.327565 #97447]  INFO -- : Registered expected interaction GET /users
+D, [2020-12-15T15:28:39.327671 #97447] DEBUG -- : {
   "description": "Request for users",
   "providerState": "No users in data store",
   "request": {
@@ -64,30 +76,30 @@ D, [2020-12-14T15:23:01.230812 #70732] DEBUG -- : {
   },
   "metadata": null
 }
-I, [2020-12-14T15:23:01.235070 #70732]  INFO -- : Received request GET /users
-D, [2020-12-14T15:23:01.235156 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.332597 #97447]  INFO -- : Received request GET /users
+D, [2020-12-15T15:28:39.332697 #97447] DEBUG -- : {
   "path": "/users",
   "query": "",
   "method": "get",
   "headers": {
-    "Host": "localhost:62715",
+    "Host": "localhost:57485",
     "Accept-Encoding": "gzip, deflate",
     "Connection": "close",
     "Version": "HTTP/1.1"
   }
 }
-I, [2020-12-14T15:23:01.235264 #70732]  INFO -- : Found matching response for GET /users
-D, [2020-12-14T15:23:01.235337 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.332850 #97447]  INFO -- : Found matching response for GET /users
+D, [2020-12-15T15:28:39.332909 #97447] DEBUG -- : {
   "status": 404,
   "headers": {
     "Content-Type": "application/json; charset=utf-8"
   },
   "body": "no users found"
 }
-I, [2020-12-14T15:23:01.239276 #70732]  INFO -- : Verifying - interactions matched
-I, [2020-12-14T15:23:01.244327 #70732]  INFO -- : Cleared interactions
-I, [2020-12-14T15:23:01.250415 #70732]  INFO -- : Registered expected interaction GET /users/user@user.com
-D, [2020-12-14T15:23:01.250576 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.338799 #97447]  INFO -- : Verifying - interactions matched
+I, [2020-12-15T15:28:39.343770 #97447]  INFO -- : Cleared interactions
+I, [2020-12-15T15:28:39.348949 #97447]  INFO -- : Registered expected interaction GET /users/user@user.com
+D, [2020-12-15T15:28:39.349156 #97447] DEBUG -- : {
   "description": "Request for a user by email",
   "providerState": "User with email exists",
   "request": {
@@ -123,20 +135,20 @@ D, [2020-12-14T15:23:01.250576 #70732] DEBUG -- : {
   },
   "metadata": null
 }
-I, [2020-12-14T15:23:01.255287 #70732]  INFO -- : Received request GET /users/user@user.com
-D, [2020-12-14T15:23:01.255401 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.355499 #97447]  INFO -- : Received request GET /users/user@user.com
+D, [2020-12-15T15:28:39.355623 #97447] DEBUG -- : {
   "path": "/users/user@user.com",
   "query": "",
   "method": "get",
   "headers": {
-    "Host": "localhost:62715",
+    "Host": "localhost:57485",
     "Accept-Encoding": "gzip, deflate",
     "Connection": "close",
     "Version": "HTTP/1.1"
   }
 }
-I, [2020-12-14T15:23:01.255536 #70732]  INFO -- : Found matching response for GET /users/user@user.com
-D, [2020-12-14T15:23:01.255613 #70732] DEBUG -- : {
+I, [2020-12-15T15:28:39.355788 #97447]  INFO -- : Found matching response for GET /users/user@user.com
+D, [2020-12-15T15:28:39.355919 #97447] DEBUG -- : {
   "status": 200,
   "headers": {
     "Content-Type": "application/json; charset=utf-8"
@@ -153,6 +165,45 @@ D, [2020-12-14T15:23:01.255613 #70732] DEBUG -- : {
     "lastName": "Anguin"
   }
 }
-I, [2020-12-14T15:23:01.267805 #70732]  INFO -- : Verifying - interactions matched
-I, [2020-12-14T15:23:01.271855 #70732]  INFO -- : Cleared interactions
-I, [2020-12-14T15:23:01.277087 #70732]  INFO -- : Writing pact for provider to /Users/oneal.anguin@ef.com/ef/expirements/pact/consumer/pacts/consumer-provider.json
+I, [2020-12-15T15:28:39.361746 #97447]  INFO -- : Verifying - interactions matched
+I, [2020-12-15T15:28:39.365337 #97447]  INFO -- : Cleared interactions
+I, [2020-12-15T15:28:39.371389 #97447]  INFO -- : Registered expected interaction GET /users/notfound@notfound.notfound@notfound
+D, [2020-12-15T15:28:39.371556 #97447] DEBUG -- : {
+  "description": "Request for a user by email",
+  "providerState": "User with email does not exist",
+  "request": {
+    "method": "GET",
+    "path": "/users/notfound@notfound.notfound@notfound"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": "no user found"
+  },
+  "metadata": null
+}
+I, [2020-12-15T15:28:39.377381 #97447]  INFO -- : Received request GET /users/notfound@notfound.notfound@notfound
+D, [2020-12-15T15:28:39.377492 #97447] DEBUG -- : {
+  "path": "/users/notfound@notfound.notfound@notfound",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "Host": "localhost:57485",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "close",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2020-12-15T15:28:39.377601 #97447]  INFO -- : Found matching response for GET /users/notfound@notfound.notfound@notfound
+D, [2020-12-15T15:28:39.377663 #97447] DEBUG -- : {
+  "status": 404,
+  "headers": {
+    "Content-Type": "application/json; charset=utf-8"
+  },
+  "body": "no user found"
+}
+I, [2020-12-15T15:28:39.381917 #97447]  INFO -- : Verifying - interactions matched
+I, [2020-12-15T15:28:39.386551 #97447]  INFO -- : Cleared interactions
+I, [2020-12-15T15:28:39.392193 #97447]  INFO -- : Writing pact for provider to /Users/oneal.anguin@ef.com/ef/expirements/pact/consumer/pacts/consumer-provider.json

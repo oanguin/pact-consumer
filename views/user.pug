@@ -1,4 +1,9 @@
 extends layout
 
 block content
-  p Data from back end #{data}
+  if data instanceof Error
+    h1 #{data.toString()}
+  else
+    h1 #{data.firstName}
+    h1 #{data.lastName}
+    h1 #{data.email}

@@ -68,6 +68,12 @@ describe("Pact", () => {
               {
                 firstName: "Oneal",
                 lastName: "Anguin",
+                email: "oanguin@bots.com",
+              },
+              {
+                firstName: "Not-Found",
+                lastName: "Not-Found",
+                email: "notfound@notfound.notfound@notfound",
               },
             ],
           },
@@ -78,7 +84,18 @@ describe("Pact", () => {
         const users = userClient.getUsers();
         expect(users).to.eventually.be.an("array");
         expect(users)
-          .to.eventually.to.eql([{ firstName: "Oneal", lastName: "Anguin" }])
+          .to.eventually.to.eql([
+            {
+              firstName: "Oneal",
+              lastName: "Anguin",
+              email: "oanguin@bots.com",
+            },
+            {
+              firstName: "Not-Found",
+              lastName: "Not-Found",
+              email: "notfound@notfound.notfound@notfound",
+            },
+          ])
           .notify(done);
       });
     });
@@ -133,6 +150,31 @@ describe("Pact", () => {
       it("returns a user", (done) => {
         const user = userClient.getUser("user@user.com");
         expect(user).to.eventually.have.deep.property("id", 1).notify(done);
+      });
+    });
+  });
+
+  describe("when a call to get a user by email is made", () => {
+    describe("and the user is not found", () => {
+      before(() =>
+        provider.addInteraction({
+          state: "User with email does not exist",
+          uponReceiving: "Request for a user by email",
+          withRequest: {
+            method: "GET",
+            path: "/users/notfound@notfound.notfound@notfound",
+          },
+          willRespondWith: {
+            status: 404,
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            body: "no user found",
+          },
+        })
+      );
+
+      it("returns an error message", (done) => {
+        const users = userClient.getUser("notfound@notfound.notfound@notfound");
+        expect(users).to.eventually.to.be.an("error").notify(done);
       });
     });
   });

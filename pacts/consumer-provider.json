@@ -21,7 +21,13 @@
         "body": [
           {
             "firstName": "Oneal",
-            "lastName": "Anguin"
+            "lastName": "Anguin",
+            "email": "oanguin@bots.com"
+          },
+          {
+            "firstName": "Not-Found",
+            "lastName": "Not-Found",
+            "email": "notfound@notfound.notfound@notfound"
           }
         ]
       }
@@ -72,6 +78,21 @@
             "match": "type"
           }
         }
+      }
+    },
+    {
+      "description": "Request for a user by email",
+      "providerState": "User with email does not exist",
+      "request": {
+        "method": "GET",
+        "path": "/users/notfound@notfound.notfound@notfound"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": "no user found"
       }
     }
   ],
