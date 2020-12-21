@@ -113,7 +113,7 @@ describe("Pact", () => {
           },
           willRespondWith: {
             status: 404,
-            headers: { "Content-Type": "application/json; charset=utf-8" },
+            headers: { "Content-Type": "text/html; charset=utf-8" },
             body: "no users found",
           },
         })
