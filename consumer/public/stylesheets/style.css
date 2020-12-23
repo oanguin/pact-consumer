@@ -7,3 +7,9 @@ body {
 a {
   color: #00b7ff;
 }
+
+h1.title {
+  padding: 20px;
+  font: 5em "Times New Roman", Helvetica, Arial, sans-serif;
+  color: darkblue;
+}

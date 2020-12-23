@@ -27,6 +27,18 @@ describe("Pact verification", () => {
           repo.clear();
           return Promise.resolve(`Users removed to the db`);
         },
+        "User with email does not exist": () => {
+          repo.clear();
+          return Promise.resolve(`Users removed to the db`);
+        },
+        "User with email exists": () => {
+          repo.insert({
+            email: "user@user.com",
+            firstName: "User",
+            lastName: "User",
+          });
+          return Promise.resolve(`User added to the db`);
+        },
       },
     };
 

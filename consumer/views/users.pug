@@ -5,6 +5,7 @@ block content
     h1 No Users Found
   else
     for user in data
-      h1
-        a(href=`/user/${user.email}`)
-          ul #{user.firstName}, #{user.lastName} 
+      ul
+        li
+          h1 
+            a(href=`/user/${user.email}`) #{user.firstName}, #{user.lastName} 

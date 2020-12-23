@@ -142,14 +142,20 @@ describe("Pact", () => {
           willRespondWith: {
             status: 200,
             headers: { "Content-Type": "application/json; charset=utf-8" },
-            body: { id: like(1), firstName: like("Oneal"), lastName: "Anguin" },
+            body: {
+              email: like("user@user.com"),
+              firstName: like("Oneal"),
+              lastName: like("Anguin"),
+            },
           },
         })
       );
 
       it("returns a user", (done) => {
         const user = userClient.getUser("user@user.com");
-        expect(user).to.eventually.have.deep.property("id", 1).notify(done);
+        expect(user)
+          .to.eventually.have.deep.property("email", "user@user.com")
+          .notify(done);
       });
     });
   });
@@ -166,7 +172,7 @@ describe("Pact", () => {
           },
           willRespondWith: {
             status: 404,
-            headers: { "Content-Type": "application/json; charset=utf-8" },
+            headers: { "Content-Type": "text/html; charset=utf-8" },
             body: "no user found",
           },
         })

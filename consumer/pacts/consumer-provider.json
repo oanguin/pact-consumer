@@ -66,15 +66,18 @@
           "Content-Type": "application/json; charset=utf-8"
         },
         "body": {
-          "id": 1,
+          "email": "user@user.com",
           "firstName": "Oneal",
           "lastName": "Anguin"
         },
         "matchingRules": {
-          "$.body.id": {
+          "$.body.email": {
             "match": "type"
           },
           "$.body.firstName": {
+            "match": "type"
+          },
+          "$.body.lastName": {
             "match": "type"
           }
         }
@@ -90,7 +93,7 @@
       "response": {
         "status": 404,
         "headers": {
-          "Content-Type": "application/json; charset=utf-8"
+          "Content-Type": "text/html; charset=utf-8"
         },
         "body": "no user found"
       }
