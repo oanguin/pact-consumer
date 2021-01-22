@@ -1,0 +1,112 @@
+{
+  "consumer": {
+    "name": "consumer1"
+  },
+  "provider": {
+    "name": "provider1"
+  },
+  "interactions": [
+    {
+      "description": "a request to get users",
+      "providerState": "Has some users",
+      "request": {
+        "method": "GET",
+        "path": "/users"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": [
+          {
+            "firstName": "Oneal",
+            "lastName": "Anguin",
+            "email": "oanguin@bots.com"
+          },
+          {
+            "firstName": "Not-Found",
+            "lastName": "Not-Found",
+            "email": "notfound@notfound.notfound@notfound"
+          },
+          {
+            "firstName": "Provider 1",
+            "lastName": "Provider 1",
+            "email": "provider1@provider.com"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Request for users",
+      "providerState": "No users in data store",
+      "request": {
+        "method": "GET",
+        "path": "/users"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "text/html; charset=utf-8"
+        },
+        "body": "no users found"
+      }
+    },
+    {
+      "description": "Request for a user by email",
+      "providerState": "User with email exists",
+      "request": {
+        "method": "GET",
+        "path": "/users/user@user.com",
+        "matchingRules": {
+          "$.path": {
+            "match": "regex",
+            "regex": "\\/users\\/[a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z0-9.]+$"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "email": "user@user.com",
+          "firstName": "Oneal",
+          "lastName": "Anguin"
+        },
+        "matchingRules": {
+          "$.body.email": {
+            "match": "type"
+          },
+          "$.body.firstName": {
+            "match": "type"
+          },
+          "$.body.lastName": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "Request for a user by email",
+      "providerState": "User with email does not exist",
+      "request": {
+        "method": "GET",
+        "path": "/users/notfound@notfound.notfound@notfound"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "text/html; charset=utf-8"
+        },
+        "body": "no user found"
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
