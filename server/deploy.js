@@ -2,6 +2,7 @@ require("dotenv").config();
 const fs = require("fs");
 const superagent = require("superagent");
 const pactServerURL = `http://${process.env.PACT_SERVER_HOST}:${process.env.PACT_SERVER_PORT}`;
+const proxy = require("./proxy");
 
 const deployMocks = async () => {
   console.log("Deploying Mocks");
@@ -9,6 +10,8 @@ const deployMocks = async () => {
   const servers = await getMockServers();
 
   const dir = await fs.promises.opendir("./pacts");
+
+  var rules = {};
 
   for await (const file of dir) {
     fs.readFile(`./pacts/${file.name}`, "utf8", (err, dataString) => {
@@ -26,10 +29,17 @@ const deployMocks = async () => {
         .post(pactServerURL)
         .send(mock)
         .set("accept", "application/json")
-        .then((res) => console.log(res.body))
+        .then((res) => {
+          console.log(res.body);
+          rules[
+            `.*/${mock.provider.name}`
+          ] = `http://localhost:${res.body.mockServer.port}`;
+        })
         .catch(console.error);
     });
   }
+
+  await proxy.createProxyServer(rules);
 };
 
 const getMockServers = async () => {
@@ -43,4 +53,5 @@ const getMockServers = async () => {
 const clearMock = async (id) => {
   await superagent.delete(`${pactServerURL}/mockserver/${id}`);
 };
+
 deployMocks();
